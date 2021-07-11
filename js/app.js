@@ -2,6 +2,7 @@
 
 
 let workingHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
+console.log(workingHours);
 // seattle ............
 
 
@@ -36,13 +37,13 @@ let seattle = {
 
 
 
-        console.log(this.randomCustomers);
+        // console.log(this.randomCustomers);
 
 
     },
     cookiesAvg:function(){
         for(let v=0;v<this.randomCustomers.length;v++){
-            this.avgCookiesperHour.push(Math.floor(this.randomCustomers[v]*6.3));
+            this.avgCookiesperHour.push(Math.floor(this.randomCustomers[v]*this.avg));
             console.log(this.avgCookiesperHour);
         }
     }
@@ -74,7 +75,7 @@ seattle.render = function () {
     let child = document.createElement('article');
 
     container.appendChild(child);
-    console.log(child);
+    // console.log(child);
 
 
     let h1Element = document.createElement('h1');
@@ -92,29 +93,40 @@ seattle.render = function () {
     child.appendChild(ulElement);
 
 
-
     // ask TAs how to show them in browser!!!
 
     for (let i = 0; i < this.randomCustomers.length; i++) {
         let liElement = document.createElement('li');
         ulElement.appendChild(liElement);
-        liElement.textContent = this.randomCustomers[i];
+      liElement.textContent =`${workingHours[i]}:  Number of customers is  ${this.randomCustomers[i]} and number of Cookies is: ${this.avgCookiesperHour[i]}`;
+
+        
 
     }
 
 
+    
+    const array = this.avgCookiesperHour;
+    let sum = 0;
+    
+    for (let i = 0; i < array.length; i++) {
+        sum += array[i];
 
-
-
+    }
+    let ulElement2 = document.createElement('ul');
+    child.appendChild(ulElement2);
+    let liElement2 = document.createElement('li');
+        ulElement2.appendChild(liElement2);
+        liElement2.textContent =`total number of cookies is ${sum} `;
 
 
 
 }
 
-seattle.render();
+
 seattle.numOfCustomers();
 seattle.cookiesAvg();
-
+seattle.render();
 
 // tokyo ........
 
@@ -142,7 +154,7 @@ let tokyo = {
     },
     cookiesAvg:function(){
         for(let v=0;v<this.randomCustomers.length;v++){
-            this.avgCookiesperHour.push(Math.floor(this.randomCustomers[v]*1.2));
+            this.avgCookiesperHour.push(Math.floor(this.randomCustomers[v]*this.avg));
             
         }
         console.log(this.avgCookiesperHour);
@@ -196,9 +208,22 @@ tokyo.render = function () {
     for (let i = 0; i < this.randomCustomers.length; i++) {
         let liElement = document.createElement('li');
         ulElement.appendChild(liElement);
-        liElement.textContent = this.randomCustomers[i];
+        liElement.textContent =`${workingHours[i]}:  Number of customers is  ${this.randomCustomers[i]} and number of Cookies is: ${this.avgCookiesperHour[i]}`;
 
     }
+ 
+    const array = this.avgCookiesperHour;
+    let sum = 0;
+    
+    for (let i = 0; i < array.length; i++) {
+        sum += array[i];
+
+    }
+    let ulElement2 = document.createElement('ul');
+    child.appendChild(ulElement2);
+    let liElement2 = document.createElement('li');
+        ulElement2.appendChild(liElement2);
+        liElement2.textContent =`total number of cookies is ${sum} `;
 
 
 
@@ -207,9 +232,10 @@ tokyo.render = function () {
 
 }
 
-tokyo.render();
+
 tokyo.numOfCustomers();
 tokyo.cookiesAvg();
+tokyo.render();
 
 
 // dubai......
@@ -237,7 +263,7 @@ let dubai = {
     },
     cookiesAvg:function(){
         for(let v=0;v<this.randomCustomers.length;v++){
-            this.avgCookiesperHour.push(Math.floor(this.randomCustomers[v]*3.7));
+            this.avgCookiesperHour.push(Math.floor(this.randomCustomers[v]*this.avg));
             console.log(this.avgCookiesperHour);
         }
     }
@@ -287,9 +313,23 @@ dubai.render = function () {
     for (let i = 0; i < this.randomCustomers.length; i++) {
         let liElement = document.createElement('li');
         ulElement.appendChild(liElement);
-        liElement.textContent = this.randomCustomers[i];
+      liElement.textContent =`${workingHours[i]}:  Number of customers is  ${this.randomCustomers[i]} and number of Cookies is: ${this.avgCookiesperHour[i]}`;
+
 
     }
+ 
+    const array = this.avgCookiesperHour;
+    let sum = 0;
+    
+    for (let i = 0; i < array.length; i++) {
+        sum += array[i];
+
+    }
+    let ulElement2 = document.createElement('ul');
+    child.appendChild(ulElement2);
+    let liElement2 = document.createElement('li');
+        ulElement2.appendChild(liElement2);
+        liElement2.textContent =`total number of cookies is ${sum} `;
 
 
 
@@ -300,9 +340,10 @@ dubai.render = function () {
 
 }
 
-dubai.render();
+
 dubai.numOfCustomers();
 dubai.cookiesAvg();
+dubai.render();
 
 // paris ......
 
@@ -330,7 +371,7 @@ let paris = {
 },
 cookiesAvg:function(){
     for(let v=0;v<this.randomCustomers.length;v++){
-        this.avgCookiesperHour.push(Math.floor(this.randomCustomers[v]*2.3));
+        this.avgCookiesperHour.push(Math.floor(this.randomCustomers[v]*this.avg));
         console.log(this.avgCookiesperHour);
     }
 }
@@ -380,21 +421,35 @@ paris.render = function () {
     for (let i = 0; i < this.randomCustomers.length; i++) {
         let liElement = document.createElement('li');
         ulElement.appendChild(liElement);
-        liElement.textContent = this.randomCustomers[i];
+        liElement.textContent =`${workingHours[i]}:  Number of customers is  ${this.randomCustomers[i]} and number of Cookies is: ${this.avgCookiesperHour[i]}`;
 
     }
 
 
 
+ 
+    const array = this.avgCookiesperHour;
+    let sum = 0;
+    
+    for (let i = 0; i < array.length; i++) {
+        sum += array[i];
+
+    }
+    let ulElement2 = document.createElement('ul');
+    child.appendChild(ulElement2);
+    let liElement2 = document.createElement('li');
+        ulElement2.appendChild(liElement2);
+        liElement2.textContent =`total number of cookies is ${sum} `;
 
 
 
 
 }
 
-paris.render();
+
 paris.numOfCustomers();
 paris.cookiesAvg();
+paris.render();
 
 // lima ....
 
@@ -422,7 +477,7 @@ let lima = {
     },
     cookiesAvg:function(){
         for(let v=0;v<this.randomCustomers.length;v++){
-            this.avgCookiesperHour.push(Math.floor(this.randomCustomers[v]*4.6));
+            this.avgCookiesperHour.push(Math.floor(this.randomCustomers[v]*this.avg));
             console.log(this.avgCookiesperHour);
         }
     }
@@ -472,11 +527,25 @@ lima.render = function () {
     for (let i = 0; i < this.randomCustomers.length; i++) {
         let liElement = document.createElement('li');
         ulElement.appendChild(liElement);
-        liElement.textContent = this.randomCustomers[i];
+        // liElement.textContent =workingHours[i]+', Number of customers is '+ this.randomCustomers[i]+' and number of Cookies is: '+ this.avgCookiesperHour[i];
+        liElement.textContent =`${workingHours[i]}:  Number of customers is  ${this.randomCustomers[i]} and number of Cookies is: ${this.avgCookiesperHour[i]}`;
 
     }
 
 
+     
+    const array = this.avgCookiesperHour;
+    let sum = 0;
+    
+    for (let i = 0; i < array.length; i++) {
+        sum += array[i];
+
+    }
+    let ulElement2 = document.createElement('ul');
+    child.appendChild(ulElement2);
+    let liElement2 = document.createElement('li');
+        ulElement2.appendChild(liElement2);
+        liElement2.textContent =`total number of cookies is ${sum} `;
 
 
 
@@ -485,9 +554,10 @@ lima.render = function () {
 
 }
 
-lima.render();
+
 lima.numOfCustomers();
 lima.cookiesAvg();
+lima.render();
 
 
 
