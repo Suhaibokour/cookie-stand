@@ -15,6 +15,8 @@ function random(min, max) {
 
 
 
+
+
 let seattle = {
     location: 'seattle',
     min: 23,
