@@ -31,6 +31,7 @@ function Cookie(location, min, max, avg, sum) {
     this.min = min;
     this.max = max;
     this.avg = avg;
+    this.totalCookiesForLocal = 0;
     this.randomCustomers = [];
     this.avgCookiesperHour = [];
     this.sum = sum;
@@ -38,6 +39,7 @@ function Cookie(location, min, max, avg, sum) {
 
 
     shopLocations.push(this);
+    shops.push(this);
 
 }
 
@@ -65,10 +67,33 @@ Cookie.prototype.numOfCustomers = function () {
 Cookie.prototype.cookiesAvg = function () {
     for (let v = 0; v < this.randomCustomers.length; v++) {
         this.avgCookiesperHour.push(Math.floor(this.randomCustomers[v] * this.avg));
-        console.log(this.avgCookiesperHour);
+        this.totalCookiesForLocal += this.avgCookiesperHour[v];
+
     }
-   
+
 }
+
+
+
+
+let seattle = new Cookie
+    ('seattle', 23, 65, 6.3)
+
+let tokyo = new Cookie
+    ('tokyo', 3, 24, 1.2)
+
+let dubai = new Cookie
+    ('dubai', 11, 38, 3.7)
+
+let paris = new Cookie
+    ('paris', 20, 38, 2.3)
+
+let lima = new Cookie
+    ('lima', 2, 16, 4.6)
+
+
+
+
 
 // if you want 2 call method use [...name.method'sname();...]
 
@@ -93,7 +118,10 @@ function headerRow() {
         let thElement = document.createElement('th');
         headingRow.appendChild(thElement);
         thElement.textContent = workingHours[i];
-    }
+    } 
+    let lastTh=document.createElement('th');
+    headingRow.appendChild(lastTh);
+    lastTh.textContent=' Daily Location Total';
 }
 headerRow();
 
@@ -126,12 +154,12 @@ Cookie.prototype.render = function () {
 
     let array = seattle.avgCookiesperHour;
     let sum = 0;
-    
+
     for (let i = 0; i < array.length; i++) {
         sum += array[i];
-        
+
     }
-    
+
 
 
     // let totalInfo = document.createElement('td');
@@ -149,14 +177,63 @@ Cookie.prototype.render = function () {
 
 
     }
-        let totalInfo = document.createElement('td');
-        localData.appendChild(totalInfo);
-  totalInfo.textContent = sum;
+    let totalInfo = document.createElement('td');
+    localData.appendChild(totalInfo);
+    totalInfo.textContent = this.totalCookiesForLocal;
 
 
 
 }
 
+
+
+function makefooter(){
+    let footerRow=document.createElement('tr');
+    table.appendChild(footerRow);
+    let finalTh=document.createElement('th');
+    footerRow.appendChild(finalTh);
+    finalTh.textContent="Totals";
+
+
+    let totalOfTotals=0;
+    for(let i=0;i<workingHours.length;i++){
+    let totalForEachHourAlone=0;
+    for(let j=0;j<shops.length;j++){
+
+        totalForEachHourAlone+=shops[j].avgCookiesperHour[i];
+
+        totalOfTotals+=shops[j].avgCookiesperHour[i];
+    }
+    let whateverTh=document.createElement('th');
+    footerRow.appendChild(whateverTh);
+    whateverTh.textContent=totalForEachHourAlone;
+   
+
+}
+
+
+let anotherTH= document.createElement('th');
+footerRow.appendChild(anotherTH);
+anotherTH.textContent=totalOfTotals;
+
+
+
+
+
+
+}
+
+
+
+
+for (let h=0;h<shops.length;h++){
+    shops[h].numOfCustomers();
+    shops[h].cookiesAvg();
+    shops[h].render();
+}
+
+
+makefooter();
 // Cookie.prototype.sum = function () {
 //     let array = this.avgCookiesperHour;
 //         let sum = 0;
@@ -186,8 +263,8 @@ Cookie.prototype.render = function () {
 
 
 // calling functions here ... 
-let seattle = new Cookie
-    ('seattle', 23, 65, 6.3)
+// let seattle = new Cookie
+//     ('seattle', 23, 65, 6.3)
 
 // let array = seattle.avgCookiesperHour;
 // let sum = 0;
@@ -204,51 +281,51 @@ let seattle = new Cookie
 
 
 
-seattle.numOfCustomers();
-seattle.cookiesAvg();
-seattle.render();
+// seattle.numOfCustomers();
+// seattle.cookiesAvg();
+// seattle.render();
 // seattle.sum();
 
 
-let tokyo = new Cookie
-    ('tokyo', 3, 24, 1.2)
+// let tokyo = new Cookie
+//     ('tokyo', 3, 24, 1.2)
 
 
-tokyo.numOfCustomers();
-tokyo.cookiesAvg();
-tokyo.render();
-
-
-
-let dubai = new Cookie
-    ('dubai', 11, 38, 3.7)
-
-
-dubai.numOfCustomers();
-dubai.cookiesAvg();
-dubai.render();
+// tokyo.numOfCustomers();
+// tokyo.cookiesAvg();
+// tokyo.render();
 
 
 
-let paris = new Cookie
-    ('paris', 20, 38, 2.3)
+// let dubai = new Cookie
+//     ('dubai', 11, 38, 3.7)
 
 
-paris.numOfCustomers();
-paris.cookiesAvg();
-paris.render();
-
-
+// dubai.numOfCustomers();
+// dubai.cookiesAvg();
+// dubai.render();
 
 
 
-let lima = new Cookie
-    ('lima', 2, 16, 4.6)
+// let paris = new Cookie
+//     ('paris', 20, 38, 2.3)
 
 
-lima.numOfCustomers();
-lima.cookiesAvg();
-lima.render();
+// paris.numOfCustomers();
+// paris.cookiesAvg();
+// paris.render();
+
+
+
+
+
+// let lima = new Cookie
+//     ('lima', 2, 16, 4.6)
+
+
+// lima.numOfCustomers();
+// lima.cookiesAvg();
+// lima.render();
 
 
 
