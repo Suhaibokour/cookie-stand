@@ -6,7 +6,7 @@ let workingHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12am', '1pm', '
 // seattle ............ 
 
 let shopLocations = [];
-console.log(shopLocations)
+
 // this is from w3Schooles
 
 function random(min, max) {
@@ -26,7 +26,8 @@ function random(min, max) {
 
 let shops = [];
 
-function Cookie(location, min, max, avg, sum) {
+
+function Cookie(location, min, max, avg) {
     this.location = location;
     this.min = min;
     this.max = max;
@@ -34,13 +35,13 @@ function Cookie(location, min, max, avg, sum) {
     this.totalCookiesForLocal = 0;
     this.randomCustomers = [];
     this.avgCookiesperHour = [];
-    this.sum = sum;
 
 
 
-    shopLocations.push(this);
+
+    // shopLocations.push(this);
     shops.push(this);
-
+    console.log(shops)
 }
 
 
@@ -76,20 +77,15 @@ Cookie.prototype.cookiesAvg = function () {
 
 
 
-let seattle = new Cookie
-    ('seattle', 23, 65, 6.3)
+let seattle = new Cookie('seattle', 23, 65, 6.3);
 
-let tokyo = new Cookie
-    ('tokyo', 3, 24, 1.2)
+let tokyo = new Cookie('tokyo', 3, 24, 1.2);
 
-let dubai = new Cookie
-    ('dubai', 11, 38, 3.7)
+let dubai = new Cookie('dubai', 11, 38, 3.7);
 
-let paris = new Cookie
-    ('paris', 20, 38, 2.3)
+let paris = new Cookie('paris', 20, 38, 2.3);
 
-let lima = new Cookie
-    ('lima', 2, 16, 4.6)
+let lima = new Cookie('lima', 2, 16, 4.6);
 
 
 
@@ -114,34 +110,31 @@ function headerRow() {
     table.appendChild(headingRow);
     let emptyCell = document.createElement('th');
     headingRow.appendChild(emptyCell);
+    emptyCell.textContent='Name';
     for (let i = 0; i < workingHours.length; i++) {
         let thElement = document.createElement('th');
         headingRow.appendChild(thElement);
         thElement.textContent = workingHours[i];
-    } 
-    let lastTh=document.createElement('th');
+    }
+    let lastTh = document.createElement('th');
     headingRow.appendChild(lastTh);
-    lastTh.textContent=' Daily Location Total';
+    lastTh.textContent = ' Daily Location Total';
 }
-headerRow();
 
 
 // another shared functions ...
 
 
+
 Cookie.prototype.render = function () {
-    let localRow = document.createElement('tr');
-    table.appendChild(localRow);
+    
 
-    // this is my way .....
-
-    document.getElementById('table');
+    
     let localData = document.createElement('tr');
     table.appendChild(localData);
-    for (let y = 0; y < shopLocations.length; y++) {
-
-        localData.textContent = shopLocations[y].location;
-    }
+    let nameTd=document.createElement('td');
+    localData.appendChild(nameTd);
+    nameTd.textContent=this.location;
 
 
 
@@ -152,13 +145,13 @@ Cookie.prototype.render = function () {
     // localInfo.textContent = this.location;
 
 
-    let array = seattle.avgCookiesperHour;
-    let sum = 0;
+    // let array = seattle.avgCookiesperHour;
+    // let sum = 0;
 
-    for (let i = 0; i < array.length; i++) {
-        sum += array[i];
+    // for (let i = 0; i < array.length; i++) {
+    //     sum += array[i];
 
-    }
+    // }
 
 
 
@@ -168,9 +161,9 @@ Cookie.prototype.render = function () {
     for (let k = 0; k < workingHours.length; k++) {
 
 
-        let localAvg = document.createElement('td');
-        localData.appendChild(localAvg);
-        localAvg.textContent = this.avgCookiesperHour[k];
+        let cookiesTd = document.createElement('td');
+        localData.appendChild(cookiesTd);
+        cookiesTd.textContent = this.avgCookiesperHour[k];
 
 
 
@@ -187,34 +180,34 @@ Cookie.prototype.render = function () {
 
 
 
-function makefooter(){
-    let footerRow=document.createElement('tr');
+function makefooter() {
+    let footerRow = document.createElement('tr');
     table.appendChild(footerRow);
-    let finalTh=document.createElement('th');
+    let finalTh = document.createElement('th');
     footerRow.appendChild(finalTh);
-    finalTh.textContent="Totals";
+    finalTh.textContent = "Totals";
 
 
-    let totalOfTotals=0;
-    for(let i=0;i<workingHours.length;i++){
-    let totalForEachHourAlone=0;
-    for(let j=0;j<shops.length;j++){
+    let totalOfTotals = 0;
+    for (let i = 0; i < workingHours.length; i++) {
+        let totalForEachHourAlone = 0;
+        for (let j = 0; j < shops.length; j++) {
 
-        totalForEachHourAlone+=shops[j].avgCookiesperHour[i];
+            totalForEachHourAlone += shops[j].avgCookiesperHour[i];
 
-        totalOfTotals+=shops[j].avgCookiesperHour[i];
+            totalOfTotals += shops[j].avgCookiesperHour[i];
+        }
+        let whateverTh = document.createElement('th');
+        footerRow.appendChild(whateverTh);
+        whateverTh.textContent = totalForEachHourAlone;
+
+
     }
-    let whateverTh=document.createElement('th');
-    footerRow.appendChild(whateverTh);
-    whateverTh.textContent=totalForEachHourAlone;
-   
-
-}
 
 
-let anotherTH= document.createElement('th');
-footerRow.appendChild(anotherTH);
-anotherTH.textContent=totalOfTotals;
+    let anotherTH = document.createElement('th');
+    footerRow.appendChild(anotherTH);
+    anotherTH.textContent = totalOfTotals;
 
 
 
@@ -224,16 +217,205 @@ anotherTH.textContent=totalOfTotals;
 }
 
 
+
+
+// last calls for functions here ...
+
+
+
+
+headerRow();
 
 
 for (let h=0;h<shops.length;h++){
     shops[h].numOfCustomers();
     shops[h].cookiesAvg();
     shops[h].render();
+    console.log(shops[h]);
 }
 
 
-makefooter();
+
+
+
+let form=document.getElementById('form');
+
+form.addEventListener('submit',submitter);
+
+function submitter(event){
+    event.preventDefault();
+    // console.log(event.target.nameField.value);
+    // console.log(event.target.minField.value);
+    // console.log(event.target.maxField.value);
+    // console.log(event.target.avgField.value);
+
+
+    let newLocal=event.target.nameField.value;
+    let newMin=event.target.minField.value;
+    let newMax=event.target.maxField.value;
+    let newAvg=event.target.avgField.value;
+
+
+    let addedShops=new Cookie(newLocal,newMin,newMax,newAvg);
+
+
+    addedShops.numOfCustomers();
+    addedShops.cookiesAvg();
+    addedShops.render();
+    
+function makefooter2() {
+    let footerRow = document.createElement('tr');
+    table.appendChild(footerRow);
+    let finalTh = document.createElement('th');
+    footerRow.appendChild(finalTh);
+    finalTh.textContent = "Totals2";
+
+
+    let totalOfTotals = 0;
+    for (let i = 0; i < workingHours.length; i++) {
+        let totalForEachHourAlone = 0;
+        for (let j = 0; j < shops.length; j++) {
+
+            totalForEachHourAlone += shops[j].avgCookiesperHour[i];
+
+            totalOfTotals += shops[j].avgCookiesperHour[i];
+        }
+        let whateverTh = document.createElement('th');
+        footerRow.appendChild(whateverTh);
+        whateverTh.textContent = totalForEachHourAlone;
+
+
+    }
+
+
+    let anotherTH = document.createElement('th');
+    footerRow.appendChild(anotherTH);
+    anotherTH.textContent = totalOfTotals;
+
+
+
+
+
+
+}
+    makefooter2();
+    
+}
+
+
+
+
+if(submitter==true){
+    submitter();
+}else{
+    makefooter();
+}
+
+
+// makefooter();
+
+
+// seattle.numOfCustomers();
+// seattle.cookiesAvg();
+// seattle.render();
+
+// tokyo.numOfCustomers();
+// tokyo.cookiesAvg();
+// tokyo.render();
+
+// dubai.numOfCustomers();
+// dubai.cookiesAvg();
+// dubai.render(); 
+
+// paris.numOfCustomers();
+// paris.cookiesAvg();
+// paris.render();
+
+// lima.numOfCustomers();
+// lima.cookiesAvg();
+// lima.render();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //...i got this way of showing names of locations from a TA (it is commneted below) and my way of solving it is the previous one.
+
+    // let localInfo = document.createElement('td');
+    // localRow.appendChild(localInfo);
+    // localInfo.textContent = this.location;
+
+
+// backup code ...
+// Cookie.prototype.render = function () {
+//     let localRow = document.createElement('tr');
+//     table.appendChild(localRow);
+
+
+
+//     document.getElementById('table');
+//     let localData = document.createElement('tr');
+//     table.appendChild(localData);
+//     for (let y = 0; y < shops.length; y++) {
+
+//         localData.textContent = shops[y].location;
+
+
+//     }
+
+
+
+
+
+//     for (let k = 0; k < workingHours.length; k++) {
+
+
+//         let localAvg = document.createElement('td');
+//         localData.appendChild(localAvg);
+//         localAvg.textContent = this.avgCookiesperHour[k];
+
+
+
+
+
+//     }
+//     let totalInfo = document.createElement('td');
+//     localData.appendChild(totalInfo);
+//     totalInfo.textContent = this.totalCookiesForLocal;
+
+
+
+// }
+
+// ends here
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Cookie.prototype.sum = function () {
 //     let array = this.avgCookiesperHour;
 //         let sum = 0;
@@ -893,4 +1075,4 @@ makefooter();
 // // let workingHours=['6am', '7am', '8am', '9am', '10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 // //     for (let j = 0; j < workingHours.length; j++) {
 // //         this.randomCustomers.push(workingHours[j]);
-// //     }
+// //     
