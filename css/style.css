@@ -1,0 +1,29 @@
+table,tr,th,td{
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  body{
+    padding: 30px;
+    background-color: darkgrey;
+  }
+  header{
+    padding: 20px;
+    background-color: burlywood;
+  }
+  main{
+    padding: 20px;
+  }
+  footer{
+    padding: 20px;
+    background-color: burlywood;
+  }
+  header{
+    position: relative;
+  }
+  #contact{
+    position: absolute;
+    top: 0;
+    right: 20px;
+    float: right;
+    text-decoration: none;
+  }
