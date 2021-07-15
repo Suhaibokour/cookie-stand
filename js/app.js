@@ -264,11 +264,11 @@ function submitter(event){
     addedShops.render();
     
 function makefooter2() {
-    let footerRow = document.createElement('tr');
-    table.appendChild(footerRow);
+    let footerRow2 = document.createElement('tr');
+    table.appendChild(footerRow2);
     let finalTh = document.createElement('th');
-    footerRow.appendChild(finalTh);
-    finalTh.textContent = "Totals2";
+    footerRow2.appendChild(finalTh);
+    finalTh.textContent = "New Totals";
 
 
     let totalOfTotals = 0;
@@ -281,7 +281,7 @@ function makefooter2() {
             totalOfTotals += shops[j].avgCookiesperHour[i];
         }
         let whateverTh = document.createElement('th');
-        footerRow.appendChild(whateverTh);
+        footerRow2.appendChild(whateverTh);
         whateverTh.textContent = totalForEachHourAlone;
 
 
@@ -305,10 +305,12 @@ function makefooter2() {
 
 
 
-if(submitter==true){
+if(submitter===true){
     submitter();
+    
 }else{
     makefooter();
+    document.getElementById("footerRow").deleteRow(0);
 }
 
 
