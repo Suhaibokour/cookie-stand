@@ -251,9 +251,9 @@ function submitter(event){
 
 
     let newLocal=event.target.nameField.value;
-    let newMin=event.target.minField.value;
-    let newMax=event.target.maxField.value;
-    let newAvg=event.target.avgField.value;
+    let newMin=parseInt(event.target.minField.value);
+    let newMax=parseInt(event.target.maxField.value);
+    let newAvg=parseFloat(event.target.avgField.value);
 
 
     let addedShops=new Cookie(newLocal,newMin,newMax,newAvg);
@@ -307,10 +307,11 @@ function makefooter2() {
 
 if(submitter===true){
     submitter();
+    document.getElementById("footerRow").deleteRow(0);
     
 }else{
     makefooter();
-    document.getElementById("footerRow").deleteRow(0);
+    
 }
 
 
