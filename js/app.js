@@ -110,7 +110,7 @@ function headerRow() {
     table.appendChild(headingRow);
     let emptyCell = document.createElement('th');
     headingRow.appendChild(emptyCell);
-    emptyCell.textContent='Name';
+    emptyCell.textContent = 'Name';
     for (let i = 0; i < workingHours.length; i++) {
         let thElement = document.createElement('th');
         headingRow.appendChild(thElement);
@@ -127,14 +127,14 @@ function headerRow() {
 
 
 Cookie.prototype.render = function () {
-    
 
-    
+
+
     let localData = document.createElement('tr');
     table.appendChild(localData);
-    let nameTd=document.createElement('td');
+    let nameTd = document.createElement('td');
     localData.appendChild(nameTd);
-    nameTd.textContent=this.location;
+    nameTd.textContent = this.location;
 
 
 
@@ -227,7 +227,7 @@ function makefooter() {
 headerRow();
 
 
-for (let h=0;h<shops.length;h++){
+for (let h = 0; h < shops.length; h++) {
     shops[h].numOfCustomers();
     shops[h].cookiesAvg();
     shops[h].render();
@@ -238,11 +238,11 @@ for (let h=0;h<shops.length;h++){
 
 
 
-let form=document.getElementById('form');
+let form = document.getElementById('form');
 
-form.addEventListener('submit',submitter);
+form.addEventListener('submit', submitter);
 
-function submitter(event){
+function submitter(event) {
     event.preventDefault();
     // console.log(event.target.nameField.value);
     // console.log(event.target.minField.value);
@@ -250,68 +250,68 @@ function submitter(event){
     // console.log(event.target.avgField.value);
 
 
-    let newLocal=event.target.nameField.value;
-    let newMin=parseInt(event.target.minField.value);
-    let newMax=parseInt(event.target.maxField.value);
-    let newAvg=parseFloat(event.target.avgField.value);
+    let newLocal = event.target.nameField.value;
+    let newMin = parseInt(event.target.minField.value);
+    let newMax = parseInt(event.target.maxField.value);
+    let newAvg = parseFloat(event.target.avgField.value);
 
 
-    let addedShops=new Cookie(newLocal,newMin,newMax,newAvg);
+    let addedShops = new Cookie(newLocal, newMin, newMax, newAvg);
 
 
     addedShops.numOfCustomers();
     addedShops.cookiesAvg();
     addedShops.render();
-    
-function makefooter2() {
-    let footerRow2 = document.createElement('tr');
-    table.appendChild(footerRow2);
-    let finalTh = document.createElement('th');
-    footerRow2.appendChild(finalTh);
-    finalTh.textContent = "New Totals";
+
+    function makefooter2() {
+        let footerRow2 = document.createElement('tr');
+        table.appendChild(footerRow2);
+        let finalTh = document.createElement('th');
+        footerRow2.appendChild(finalTh);
+        finalTh.textContent = "New Totals";
 
 
-    let totalOfTotals = 0;
-    for (let i = 0; i < workingHours.length; i++) {
-        let totalForEachHourAlone = 0;
-        for (let j = 0; j < shops.length; j++) {
+        let totalOfTotals = 0;
+        for (let i = 0; i < workingHours.length; i++) {
+            let totalForEachHourAlone = 0;
+            for (let j = 0; j < shops.length; j++) {
 
-            totalForEachHourAlone += shops[j].avgCookiesperHour[i];
+                totalForEachHourAlone += shops[j].avgCookiesperHour[i];
 
-            totalOfTotals += shops[j].avgCookiesperHour[i];
+                totalOfTotals += shops[j].avgCookiesperHour[i];
+            }
+            let whateverTh = document.createElement('th');
+            footerRow2.appendChild(whateverTh);
+            whateverTh.textContent = totalForEachHourAlone;
+
+
         }
-        let whateverTh = document.createElement('th');
-        footerRow2.appendChild(whateverTh);
-        whateverTh.textContent = totalForEachHourAlone;
+
+
+        let anotherTH = document.createElement('th');
+        footerRow2.appendChild(anotherTH);
+        anotherTH.textContent = totalOfTotals;
+
+
+
+
 
 
     }
-
-
-    let anotherTH = document.createElement('th');
-    footerRow.appendChild(anotherTH);
-    anotherTH.textContent = totalOfTotals;
-
-
-
-
-
-
-}
     makefooter2();
-    
+
 }
 
 
 
 
-if(submitter===true){
+if (submitter === true) {
     submitter();
-    document.getElementById("footerRow").deleteRow(0);
-    
-}else{
+
+
+} else {
     makefooter();
-    
+
 }
 
 
