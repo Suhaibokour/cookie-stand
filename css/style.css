@@ -1,6 +1,9 @@
 table,tr,th,td{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     border: 1px solid black;
     border-collapse: collapse;
+    color: rgb(250, 86, 26);
+    
   }
   body{
     padding: 30px;
@@ -26,4 +29,17 @@ table,tr,th,td{
     right: 20px;
     float: right;
     text-decoration: none;
+  }
+  header div h1{
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(61, 44, 0);
+    font-weight: bold;
+  }
+  main div h3{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: rgb(19, 122, 19);
+  }
+  main div ul{
+    color: rgb(87, 64, 6);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   }
