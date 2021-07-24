@@ -224,6 +224,7 @@ function makefooter() {
 
 
 
+
 headerRow();
 
 
@@ -235,7 +236,7 @@ for (let h = 0; h < shops.length; h++) {
 }
 
 
-
+makefooter();
 
 
 let form = document.getElementById('form');
@@ -258,17 +259,24 @@ function submitter(event) {
 
     let addedShops = new Cookie(newLocal, newMin, newMax, newAvg);
 
+table.textContent="";
+addedShops.numOfCustomers();
+addedShops.cookiesAvg();
 
-    addedShops.numOfCustomers();
-    addedShops.cookiesAvg();
-    addedShops.render();
+headerRow();
+for(let l=0;l<shops.length;l++){
+    shops[l].render();
+}
+    // addedShops.numOfCustomers();
+    // addedShops.cookiesAvg();
+    // addedShops.render();
 
     function makefooter2() {
         let footerRow2 = document.createElement('tr');
         table.appendChild(footerRow2);
         let finalTh = document.createElement('th');
         footerRow2.appendChild(finalTh);
-        finalTh.textContent = "New Totals";
+        finalTh.textContent = "Totals";
 
 
         let totalOfTotals = 0;
@@ -300,19 +308,22 @@ function submitter(event) {
     }
     makefooter2();
 
+
+
 }
 
 
 
 
-if (submitter === true) {
-    submitter();
+
+// if (submitter === true) {
+//     submitter();
 
 
-} else {
-    makefooter();
+// } else {
+//     makefooter();
 
-}
+// }
 
 
 // makefooter();
